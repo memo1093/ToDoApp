@@ -3,9 +3,9 @@
     <div class="col-md-5">
       <h3 class="bg-primary rounded text-light text-center p-3">{{getName()}} - ToDoList</h3>
       <div class="input-group">
-        <input type="text" class="form-control">
+        <input type="text" #todoText class="form-control">
         <div class="input-group-append">
-          <div class="btn btn-primary">Add</div>
+          <div class="btn btn-primary" (click)="addItem(todoText.value); todoText.value='' ">Add</div>
         </div>
       </div>
 
@@ -21,6 +21,7 @@
             <tr *ngFor="let item of getItems(); let i = index">
                 <td>{{ i+1 }}</td>
                 <td>{{ item.description }}</td>
+                <td><input type="checkbox" [(ngModel)]="item.action"></td>
                 <td [ngSwitch]="item.action">
                 <p *ngSwitchCase="true">
                     Yes
